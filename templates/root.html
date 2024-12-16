@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Rotator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #rotatingImage {
+            transition: transform 0.5s ease;
+            max-width: 80%;
+            height: auto;
+        }
+        .slider-container {
+            margin-top: 20px;
+        }
+        input[type="range"] {
+            width: 300px;
+        }
+        .angle-display {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Rotation Controller</h1>
+    <img id="rotatingImage" src="{{ url_for('static', filename='py.jpeg') }}" alt="Rotatable Image">
+
+    <div class="slider-container">
+        <input type="range" id="rotationSlider" min="0" max="360" value="0">
+        <div class="angle-display">Rotation Angle: <span id="angleValue">0</span>°</div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('rotationSlider');
+        const image = document.getElementById('rotatingImage');
+        const angleDisplay = document.getElementById('angleValue');
+
+        slider.addEventListener('input', function() {
+            const angle = slider.value;
+            image.style.transform = `rotate(${angle}deg)`;
+            angleDisplay.textContent = angle;
+        });
+    </script>
+</body>
+</html>
