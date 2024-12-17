@@ -4,8 +4,8 @@ import requests
 app = Flask(__name__)
 
 # reCAPTCHA settings
-RECAPTCHA_SITE_KEY = '6LdQiJ0qAAAAALcrQ7rGVb7WhtZSwCcNa8u_2QTw'
-RECAPTCHA_SECRET_KEY = '6LdQiJ0qAAAAAPc9JXFnOsB-o4GzoFh0jYIG1PO3'
+RECAPTCHA_SITE_KEY = '6LespZ0qAAAAAGu8phR_6bqIR7Swu3E3cGmEvshd'
+RECAPTCHA_SECRET_KEY = '6LespZ0qAAAAAC_b3eV9ZUJYIFfBTBlkBWQYNJo1'
 
 @app.route('/')
 def index():
@@ -21,13 +21,9 @@ def verify():
     result = response.json()
 
     if result['success']:
-        return redirect('/rotate')
+        return render_template("root.html")
     else:
-        return "reCAPTCHA verification failed, please try again."
-
-@app.route('/rotate')
-def hello_world():
-    return render_template("root.html")
+        return redirect('/')
 
 if __name__ == '__main__':
     app.run()
